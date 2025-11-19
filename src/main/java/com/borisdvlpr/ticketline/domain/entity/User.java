@@ -1,6 +1,5 @@
 package com.borisdvlpr.ticketline.domain.entity;
 
-import ch.qos.logback.core.encoder.EchoEncoder;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
