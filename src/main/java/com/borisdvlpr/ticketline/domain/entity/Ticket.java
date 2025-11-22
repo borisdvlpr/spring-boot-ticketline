@@ -36,7 +36,7 @@ public class Ticket {
     private User purchaser;
 
     @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL)
-    private List<TicketValidation> validations;
+    private List<TicketValidation> validations = new ArrayList<>();
 
     // TODO: QRCode
 
