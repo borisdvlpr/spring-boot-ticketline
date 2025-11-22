@@ -7,6 +7,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -34,7 +35,8 @@ public class Ticket {
     @JoinColumn(name = "purchaser_id")
     private User purchaser;
 
-    // TODO: Validation
+    @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL)
+    private List<TicketValidation> validations;
 
     // TODO: QRCode
 
