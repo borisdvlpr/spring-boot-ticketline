@@ -2,10 +2,9 @@ package com.borisdvlpr.ticketline.mapper;
 
 import com.borisdvlpr.ticketline.domain.CreateEventRequest;
 import com.borisdvlpr.ticketline.domain.CreateTicketTypeRequest;
-import com.borisdvlpr.ticketline.domain.dto.CreateEventRequestDto;
-import com.borisdvlpr.ticketline.domain.dto.CreateEventResponseDto;
-import com.borisdvlpr.ticketline.domain.dto.CreateTicketTypeRequestDto;
+import com.borisdvlpr.ticketline.domain.dto.*;
 import com.borisdvlpr.ticketline.domain.entity.Event;
+import com.borisdvlpr.ticketline.domain.entity.TicketType;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
@@ -16,4 +15,8 @@ public interface EventMapper {
     CreateEventRequest fromDto(CreateEventRequestDto dto);
 
     CreateEventResponseDto toDto(Event event);
+
+    ListEventTicketTypeResponseDto toDto(TicketType ticketType);
+
+    ListEventResponseDto toListEventResponseDto(Event event);
 }
