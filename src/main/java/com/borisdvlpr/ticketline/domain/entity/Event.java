@@ -54,7 +54,7 @@ public class Event {
     @ManyToMany(mappedBy = "attendingEvents")
     private List<User> attendees = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "staffEvents")
+    @ManyToMany(mappedBy = "staffingEvents")
     private List<User> staff = new ArrayList<>();
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
