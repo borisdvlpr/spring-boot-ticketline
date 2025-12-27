@@ -5,14 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetEventTicketTypesResponseDto {
+public class GetEventDetailsTicketTypesResponseDto {
     private UUID id;
     private String name;
     private Double price;
