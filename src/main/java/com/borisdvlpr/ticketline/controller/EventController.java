@@ -3,6 +3,7 @@ package com.borisdvlpr.ticketline.controller;
 import com.borisdvlpr.ticketline.domain.CreateEventRequest;
 import com.borisdvlpr.ticketline.domain.dto.CreateEventRequestDto;
 import com.borisdvlpr.ticketline.domain.dto.CreateEventResponseDto;
+import com.borisdvlpr.ticketline.domain.dto.GetEventDetailsResponseDto;
 import com.borisdvlpr.ticketline.domain.dto.ListEventResponseDto;
 import com.borisdvlpr.ticketline.domain.entity.Event;
 import com.borisdvlpr.ticketline.mapper.EventMapper;
@@ -48,6 +49,18 @@ public class EventController {
         Page<Event> events = eventService.listEventsForOrganizer(userId, pageable);
 
         return ResponseEntity.ok(events.map(eventMapper::toListEventResponseDto));
+    }
+
+    @GetMapping(path = "/{eventId}")
+    public ResponseEntity<GetEventDetailsResponseDto> getEvent(
+            @AuthenticationPrincipal Jwt jwt,
+            @PathVariable UUID eventId) {
+
+        UUID userId = parseUserId(jwt);
+        return eventService.getEventForOrganizer(userId, eventId)
+                .map(eventMapper::toGetEventDetailsResponseDto)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     private UUID parseUserId(Jwt jwt) {
