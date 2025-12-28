@@ -30,6 +30,7 @@ public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
 
     @Override
+    @Transactional
     public Event createEvent(UUID organizerID, CreateEventRequest event) {
         User organizer = userRepository.findById(organizerID).orElseThrow(() ->
                 new UserNotFoundException(String.format("User with ID '%s' not found.", organizerID)));
