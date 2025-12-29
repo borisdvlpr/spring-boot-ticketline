@@ -2,6 +2,8 @@ package com.borisdvlpr.ticketline.mapper;
 
 import com.borisdvlpr.ticketline.domain.CreateEventRequest;
 import com.borisdvlpr.ticketline.domain.CreateTicketTypeRequest;
+import com.borisdvlpr.ticketline.domain.UpdateEventRequest;
+import com.borisdvlpr.ticketline.domain.UpdateTicketTypeRequest;
 import com.borisdvlpr.ticketline.domain.dto.*;
 import com.borisdvlpr.ticketline.domain.entity.Event;
 import com.borisdvlpr.ticketline.domain.entity.TicketType;
@@ -23,4 +25,12 @@ public interface EventMapper {
     GetEventDetailsTicketTypesResponseDto toGetEventDetailsTicketTypesResponseDto(TicketType ticketType);
 
     GetEventDetailsResponseDto toGetEventDetailsResponseDto(Event event);
+
+    UpdateTicketTypeRequest fromDto(UpdateTicketTypeRequestDto dto);
+
+    UpdateEventRequest fromDto(UpdateEventRequestDto dto);
+
+    UpdateTicketTypeResponseDto toUpdateTicketTypeResponseDto(TicketType ticketType);
+
+    UpdateEventResponseDto toUpdateEventResponseDto(Event event);
 }
