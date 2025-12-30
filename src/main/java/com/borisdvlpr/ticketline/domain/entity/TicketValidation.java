@@ -1,7 +1,7 @@
 package com.borisdvlpr.ticketline.domain.entity;
 
-import com.borisdvlpr.ticketline.domain.TicketValidationMethodEnum;
-import com.borisdvlpr.ticketline.domain.TicketValidationStatusEnum;
+import com.borisdvlpr.ticketline.domain.type.TicketValidationMethodEnum;
+import com.borisdvlpr.ticketline.domain.type.TicketValidationStatusEnum;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;

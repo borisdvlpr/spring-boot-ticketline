@@ -1,5 +1,6 @@
 package com.borisdvlpr.ticketline.domain;
 
+import com.borisdvlpr.ticketline.domain.type.EventStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

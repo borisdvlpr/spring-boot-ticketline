@@ -1,6 +1,6 @@
 package com.borisdvlpr.ticketline.domain.entity;
 
-import com.borisdvlpr.ticketline.domain.QrCodeStatusEnum;
+import com.borisdvlpr.ticketline.domain.type.QrCodeStatusEnum;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
