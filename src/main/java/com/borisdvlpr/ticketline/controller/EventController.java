@@ -1,10 +1,8 @@
 package com.borisdvlpr.ticketline.controller;
 
 import com.borisdvlpr.ticketline.domain.CreateEventRequest;
-import com.borisdvlpr.ticketline.domain.dto.CreateEventRequestDto;
-import com.borisdvlpr.ticketline.domain.dto.CreateEventResponseDto;
-import com.borisdvlpr.ticketline.domain.dto.GetEventDetailsResponseDto;
-import com.borisdvlpr.ticketline.domain.dto.ListEventResponseDto;
+import com.borisdvlpr.ticketline.domain.UpdateEventRequest;
+import com.borisdvlpr.ticketline.domain.dto.*;
 import com.borisdvlpr.ticketline.domain.entity.Event;
 import com.borisdvlpr.ticketline.mapper.EventMapper;
 import com.borisdvlpr.ticketline.service.EventService;
@@ -61,6 +59,21 @@ public class EventController {
                 .map(eventMapper::toGetEventDetailsResponseDto)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping(path = "/{eventId}")
+    public ResponseEntity<UpdateEventResponseDto> updateEvent(
+            @AuthenticationPrincipal Jwt jwt,
+            @PathVariable UUID eventId,
+            @Valid @RequestBody UpdateEventRequestDto updateEventRequestDto) {
+
+        UpdateEventRequest updateEventRequest = eventMapper.fromDto(updateEventRequestDto);
+        UUID userId = parseUserId(jwt);
+
+        Event createdEvent = eventService.updateEventForOrganizer(eventId, userId, updateEventRequest);
+        UpdateEventResponseDto updateEventResponseDto = eventMapper.toUpdateEventResponseDto(createdEvent);
+
+        return ResponseEntity.ok(updateEventResponseDto);
     }
 
     private UUID parseUserId(Jwt jwt) {
