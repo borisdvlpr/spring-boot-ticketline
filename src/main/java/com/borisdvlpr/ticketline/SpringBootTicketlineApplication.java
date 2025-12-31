@@ -5,9 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class SpringBootTicketlineApplication {
-
-    public static void main(String[] args) {
+    static void main(String[] args) {
         SpringApplication.run(SpringBootTicketlineApplication.class, args);
     }
-
 }
