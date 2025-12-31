@@ -9,7 +9,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateTicketTypeRequest {
+public class UpdateTicketTypeRequest implements TicketTypeRequest {
     private UUID id;
     private String name;
     private Double price;

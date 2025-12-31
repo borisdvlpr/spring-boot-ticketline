@@ -1,5 +1,6 @@
 package com.borisdvlpr.ticketline.service.impl;
 
+import com.borisdvlpr.ticketline.domain.TicketTypeRequest;
 import com.borisdvlpr.ticketline.domain.CreateEventRequest;
 import com.borisdvlpr.ticketline.domain.UpdateEventRequest;
 import com.borisdvlpr.ticketline.domain.UpdateTicketTypeRequest;
@@ -39,15 +40,7 @@ public class EventServiceImpl implements EventService {
 
         List<TicketType> ticketTypesToCreate = event.getTicketTypes().stream().map(
                 ticketType -> {
-                    TicketType ticketTypeToCreate = new TicketType();
-                    ticketTypeToCreate.setName(ticketType.getName());
-                    ticketTypeToCreate.setPrice(ticketType.getPrice());
-                    ticketTypeToCreate.setDescription(ticketType.getDescription());
-                    ticketTypeToCreate.setTotalAvailable(ticketType.getTotalAvailable());
-                    ticketTypeToCreate.setEvent(eventToCreate);
-
-                    return ticketTypeToCreate;
-
+                    return createTicketType(ticketType, eventToCreate);
                 }).toList();
 
         eventToCreate.setName(event.getName());
@@ -113,12 +106,7 @@ public class EventServiceImpl implements EventService {
 
         for (UpdateTicketTypeRequest ticketType : event.getTicketTypes()) {
             if (ticketType.getId() == null) {
-                TicketType ticketTypeToCreate = new TicketType();
-                ticketTypeToCreate.setName(ticketType.getName());
-                ticketTypeToCreate.setPrice(ticketType.getPrice());
-                ticketTypeToCreate.setDescription(ticketType.getDescription());
-                ticketTypeToCreate.setTotalAvailable(ticketType.getTotalAvailable());
-                ticketTypeToCreate.setEvent(existingEvent);
+                TicketType ticketTypeToCreate = createTicketType(ticketType, existingEvent);
                 existingEvent.getTicketTypes().add(ticketTypeToCreate);
 
             } else if (existingTicketTypesIndex.containsKey(ticketType.getId())) {
@@ -142,5 +130,16 @@ public class EventServiceImpl implements EventService {
     @Transactional
     public void deleteEventForOrganizer(UUID eventId, UUID organizerId) {
         getEventForOrganizer(eventId, organizerId).ifPresent(eventRepository::delete);
+    }
+
+    public TicketType createTicketType(TicketTypeRequest ticketTypeRequest, Event event) {
+        TicketType ticketTypeToCreate = new TicketType();
+        ticketTypeToCreate.setName(ticketTypeRequest.getName());
+        ticketTypeToCreate.setPrice(ticketTypeRequest.getPrice());
+        ticketTypeToCreate.setDescription(ticketTypeRequest.getDescription());
+        ticketTypeToCreate.setTotalAvailable(ticketTypeRequest.getTotalAvailable());
+        ticketTypeToCreate.setEvent(event);
+
+        return ticketTypeToCreate;
     }
 }
