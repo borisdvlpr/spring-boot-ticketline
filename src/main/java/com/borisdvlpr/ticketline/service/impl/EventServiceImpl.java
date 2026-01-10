@@ -138,6 +138,11 @@ public class EventServiceImpl implements EventService {
         return eventRepository.findByStatus(EventStatusEnum.PUBLISHED, pageable);
     }
 
+    @Override
+    public Page<Event> searchPublishedEvents(String query, Pageable pageable) {
+        return eventRepository.searchEvents(query, pageable);
+    }
+
     public TicketType createTicketType(TicketTypeRequest ticketTypeRequest, Event event) {
         TicketType ticketTypeToCreate = new TicketType();
         ticketTypeToCreate.setName(ticketTypeRequest.getName());
