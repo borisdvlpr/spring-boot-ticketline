@@ -1,7 +1,7 @@
 package com.borisdvlpr.ticketline.service.impl;
 
-import com.borisdvlpr.ticketline.domain.TicketTypeRequest;
 import com.borisdvlpr.ticketline.domain.CreateEventRequest;
+import com.borisdvlpr.ticketline.domain.TicketTypeRequest;
 import com.borisdvlpr.ticketline.domain.UpdateEventRequest;
 import com.borisdvlpr.ticketline.domain.UpdateTicketTypeRequest;
 import com.borisdvlpr.ticketline.domain.entity.Event;
