@@ -7,6 +7,7 @@ import com.borisdvlpr.ticketline.domain.UpdateTicketTypeRequest;
 import com.borisdvlpr.ticketline.domain.entity.Event;
 import com.borisdvlpr.ticketline.domain.entity.TicketType;
 import com.borisdvlpr.ticketline.domain.entity.User;
+import com.borisdvlpr.ticketline.domain.type.EventStatusEnum;
 import com.borisdvlpr.ticketline.exception.EventNotFoundException;
 import com.borisdvlpr.ticketline.exception.EventUpdateException;
 import com.borisdvlpr.ticketline.exception.TicketTypeNotFoundException;
@@ -130,6 +131,11 @@ public class EventServiceImpl implements EventService {
     @Transactional
     public void deleteEventForOrganizer(UUID eventId, UUID organizerId) {
         getEventForOrganizer(eventId, organizerId).ifPresent(eventRepository::delete);
+    }
+
+    @Override
+    public Page<Event> listPublishedEvents(Pageable pageable) {
+        return eventRepository.findByStatus(EventStatusEnum.PUBLISHED, pageable);
     }
 
     public TicketType createTicketType(TicketTypeRequest ticketTypeRequest, Event event) {
