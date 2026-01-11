@@ -143,6 +143,11 @@ public class EventServiceImpl implements EventService {
         return eventRepository.searchEvents(query, pageable);
     }
 
+    @Override
+    public Optional<Event> getPublishedEvent(UUID id) {
+        return eventRepository.findByIdAndStatus(id, EventStatusEnum.PUBLISHED);
+    }
+
     public TicketType createTicketType(TicketTypeRequest ticketTypeRequest, Event event) {
         TicketType ticketTypeToCreate = new TicketType();
         ticketTypeToCreate.setName(ticketTypeRequest.getName());
