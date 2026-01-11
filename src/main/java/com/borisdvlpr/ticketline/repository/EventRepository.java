@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.swing.text.html.Option;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -30,4 +31,6 @@ public interface EventRepository extends JpaRepository<Event, UUID> {
             "@@ plainto_tsquery('english', :searchTerm)",
            nativeQuery = true)
     Page<Event> searchEvents(@Param("searchTerm") String searchTerm, Pageable pageable);
+
+    Optional<Event> findByIdAndStatus(UUID id, EventStatusEnum status);
 }
