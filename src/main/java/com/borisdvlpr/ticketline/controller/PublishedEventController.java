@@ -16,7 +16,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping(path = "/api/v1/published-events")
 @RequiredArgsConstructor
-public class PublishedEventsController {
+public class PublishedEventController {
     private final EventService eventService;
     private final EventMapper eventMapper;
 
