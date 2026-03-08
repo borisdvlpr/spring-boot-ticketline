@@ -39,6 +39,10 @@ dependencies {
     annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
     annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
 
+    // zxing
+    implementation("com.google.zxing:core:3.5.4")
+    implementation("com.google.zxing:javase:3.5.4")
+
     // test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
