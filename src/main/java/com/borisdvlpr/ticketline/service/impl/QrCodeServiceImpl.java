@@ -53,7 +53,7 @@ public class QrCodeServiceImpl implements QrCodeService {
         BitMatrix bitMatrix = qrCodeWriter.encode(uniqueId.toString(), BarcodeFormat.QR_CODE, QR_WIDTH, QR_HEIGHT);
         BufferedImage qrCodeImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
 
-        try(ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
             ImageIO.write(qrCodeImage, "PNG", baos);
             byte[] imageBytes = baos.toByteArray();
 
