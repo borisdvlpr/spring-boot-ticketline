@@ -1,10 +1,7 @@
 package com.borisdvlpr.ticketline.controller;
 
 import com.borisdvlpr.ticketline.domain.dto.ErrorDto;
-import com.borisdvlpr.ticketline.exception.EventNotFoundException;
-import com.borisdvlpr.ticketline.exception.EventUpdateException;
-import com.borisdvlpr.ticketline.exception.TicketTypeNotFoundException;
-import com.borisdvlpr.ticketline.exception.UserNotFoundException;
+import com.borisdvlpr.ticketline.exception.*;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.bind.BindResult;
@@ -52,6 +49,15 @@ public class GlobalExceptionHandler {
         errorDto.setError("Ticket type not found.");
 
         return new ResponseEntity<>(errorDto, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(QrCodeGenerationException.class)
+    public ResponseEntity<ErrorDto> handleQrCodeGenerationException(QrCodeGenerationException ex) {
+        log.error("Caught QrCodeGenerationException:", ex);
+        ErrorDto errorDto = new ErrorDto();
+        errorDto.setError("Unable to generate QR code.");
+
+        return new ResponseEntity<>(errorDto, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
