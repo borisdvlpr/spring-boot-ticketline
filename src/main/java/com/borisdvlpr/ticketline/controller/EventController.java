@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+import static com.borisdvlpr.ticketline.util.JwtUtils.parseUserId;
+
 @RestController
 @RequestMapping(path = "/api/v1/events")
 @RequiredArgsConstructor
@@ -85,9 +87,5 @@ public class EventController {
         eventService.deleteEventForOrganizer(eventId, userId);
 
         return ResponseEntity.noContent().build();
-    }
-
-    private UUID parseUserId(Jwt jwt) {
-        return UUID.fromString(jwt.getSubject());
     }
 }
