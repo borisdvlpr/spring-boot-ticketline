@@ -41,6 +41,15 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorDto, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(TicketNotFoundException.class)
+    public ResponseEntity<ErrorDto> handleTicketNotFoundException(TicketNotFoundException ex) {
+        log.error("Caught TicketNotFoundException:", ex);
+        ErrorDto errorDto = new ErrorDto();
+        errorDto.setError("Ticket not found.");
+
+        return new ResponseEntity<>(errorDto, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(TicketTypeNotFoundException.class)
     public ResponseEntity<ErrorDto> handleTicketTypeNotFoundException(TicketTypeNotFoundException ex) {
         log.error("Caught TicketTypeNotFoundException:", ex);
